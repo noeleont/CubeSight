@@ -31,8 +31,6 @@ playground.xcworkspace
 
 .build/
 
-CubeSight.xcconfig
-
 .index-build
 DerivedData
 /.previous-build
