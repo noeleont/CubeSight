@@ -1,118 +1,135 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct TournamentView: View {
-    @Bindable var tournament: Tournament
-    @Environment(\.modelContext) private var context
-    @State private var showingAddPlayer = false
-    @State private var newPlayerName = ""
-    @State private var navigateToNewRound: Bool = false
-    @State private var newRound: Round?
-    
-    var body: some View {
-        List {
-            Section("Tournament Info") {
-                Text("Season: \(tournament.season)")
-                Text("Draft: \(tournament.draft)")
-                Text("Rounds: \(tournament.rounds)")
-                Text("Current Round: \(tournament.currentRound)")
-            }
-            
-            Section("Players") {
-                ForEach(tournament.players) { player in
-                    Text(player.name)
-                }
-                Button("Add Player") {
-                    showingAddPlayer = true
-                }
-                Button("Add 8 Players") {
-                                    addEightPlayers()
-                                }.disabled(tournament.players.count > 0)
-            }
-            
-            Section("Rounds") {
-                ForEach(tournament.completedRounds.sorted(by: { $0.number < $1.number }), id: \.number) { round in
-//                    TODO: editing rounds can lead to wrong standings
-                    NavigationLink("Round \(round.number)", destination: RoundView(round: round))
-                }
-                
-                if tournament.currentRound < tournament.rounds && tournament.players.count >= 4 {
-                    Button("Start Next Round") {
-                        if let createdRound = tournament.createNextRound(context: context) {
-                            self.newRound = createdRound
-                            self.navigateToNewRound = true
-                        }
-                    }
-                }
-            }
-            
-            Section {
-                NavigationLink("View Standings", destination: StandingsView(tournament: tournament))
-            }
+  @Bindable var viewModel: TournamentViewModel
+  @Environment(\.modelContext) private var modelContext
+  @Query private var players: [Player]
+
+  var body: some View {
+    NavigationView {
+      Group {
+        switch viewModel.state {
+        case .setup:
+          SetupView(viewModel: viewModel, players: players)
+        case .inProgress(let tournament):
+          TournamentProgressView(viewModel: viewModel, tournament: tournament)
         }
-        .sheet(isPresented: $showingAddPlayer) {
-            NavigationView {
-                Form {
-                    TextField("Player Name", text: $newPlayerName)
-                    Button("Add") {
-                        addPlayer()
-                    }
-                }
-                .navigationTitle("Add Player")
-            }
-        }
-        .navigationTitle(tournament.name)
-        .navigationDestination(isPresented: $navigateToNewRound) {
-            if let round = newRound {
-                RoundView(round: round)
-            }
-        }
+      }
+      .navigationTitle("Tournament")
     }
-    
-    private func addPlayer() {
-        let newPlayer = Player(name: newPlayerName)
-        tournament.players.append(newPlayer)
-        newPlayerName = ""
-        showingAddPlayer = false
-    }
-    private func addEightPlayers() {
-            let playerNames = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry"]
-            for name in playerNames {
-                let newPlayer = Player(name: name)
-                tournament.players.append(newPlayer)
-            }
-        }
+  }
 }
 
-struct CreateTournamentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Environment(\.dismiss) private var dismiss
-    
-    @State private var name = ""
-    @State private var season = 1
-    @State private var draft = 1
-    @State private var rounds = 3
-    
-    var body: some View {
-        Form {
-            TextField("Tournament Name", text: $name)
-            Stepper("Season: \(season)", value: $season, in: 1...100)
-            Stepper("Draft: \(draft)", value: $draft, in: 1...100)
-            Stepper("Rounds: \(rounds)", value: $rounds, in: 3...10)
-            
-            Button("Create Tournament") {
-                let newTournament = Tournament(name: name, season: season, draft: draft, rounds: rounds)
-                modelContext.insert(newTournament)
-                dismiss()
-            }
-        }
-        .navigationTitle("Create Tournament")
+struct SetupView: View {
+  @Bindable var viewModel: TournamentViewModel
+  let players: [Player]
+  @State private var selectedPlayers: Set<Player> = []
+
+  var body: some View {
+    VStack {
+      List(players, selection: $selectedPlayers) { player in
+        Text(player.name)
+      }
+      .environment(\.editMode, .constant(.active))
+
+      Button("Start Tournament") {
+        viewModel.startTournament(players: Array(selectedPlayers))
+      }
+      .disabled(selectedPlayers.count < 2)
+      .padding()
     }
+  }
+}
+
+struct TournamentProgressView: View {
+  @Bindable var viewModel: TournamentViewModel
+  let tournament: Tournament
+
+  var body: some View {
+    List {
+      StandingsView(tournament: tournament)
+
+      ForEach(tournament.rounds.indices, id: \.self) { roundIndex in
+        Section(header: Text("Round \(roundIndex + 1)")) {
+          ForEach(tournament.rounds[roundIndex].matches.indices, id: \.self) { matchIndex in
+            MatchView(
+              viewModel: viewModel, roundIndex: roundIndex, matchIndex: matchIndex,
+              match: tournament.rounds[roundIndex].matches[matchIndex])
+          }
+        }
+      }
+    }
+  }
+}
+
+struct StandingsView: View {
+  let tournament: Tournament
+
+  var body: some View {
+    Section(header: Text("Standings")) {
+      ForEach(
+        Array(
+          tournament.performance.keys.sorted {
+            tournament.performance[$0]!.matchPoints > tournament.performance[$1]!.matchPoints
+          }), id: \.self
+      ) { player in
+        HStack {
+          Text(player.name)
+          Spacer()
+          Text("MP: \(tournament.performance[player]!.matchPoints)")
+          Text("GP: \(tournament.performance[player]!.gamePoints)")
+        }
+      }
+    }
+  }
+}
+
+struct MatchView: View {
+  @Bindable var viewModel: TournamentViewModel
+  let roundIndex: Int
+  let matchIndex: Int
+  let match: Match
+  @State private var player1Wins = 0
+  @State private var player2Wins = 0
+  @State private var draws = 0
+
+  var body: some View {
+    VStack {
+      Text("\(match.player1.name) vs \(match.player2.name)")
+      HStack {
+        Stepper("P1 Wins: \(player1Wins)", value: $player1Wins, in: 0...3)
+        Stepper("P2 Wins: \(player2Wins)", value: $player2Wins, in: 0...3)
+        Stepper("Draws: \(draws)", value: $draws, in: 0...3)
+      }
+      Button("Submit Result") {
+        viewModel.completeMatch(
+          roundIndex: roundIndex, matchIndex: matchIndex, player1Wins: player1Wins,
+          player2Wins: player2Wins, draws: draws)
+      }
+      .disabled(player1Wins + player2Wins + draws == 0 || match.isComplete())
+    }
+    .padding()
+  }
 }
 
 #Preview {
-    let tournament = Tournament(name: "Sample Tournament", season: 1, draft: 1, rounds: 3)
-    tournament.players = [Player(name: "Alice"), Player(name: "Bob")]
-    return TournamentView(tournament: tournament)
-        .modelContainer(for: [Tournament.self, Player.self, Round.self, Match.self], inMemory: true)
+  let config = ModelConfiguration(isStoredInMemoryOnly: true)
+  let container = try! ModelContainer(
+    for: Player.self, Tournament.self, Round.self, Match.self, configurations: config)
+
+  let players = [
+    Player(name: "Alice"),
+    Player(name: "Bob"),
+    Player(name: "Charlie"),
+    Player(name: "David"),
+  ]
+
+  players.forEach { container.mainContext.insert($0) }
+
+  let viewModel = TournamentViewModel(modelContext: container.mainContext)
+  viewModel.startTournament(players: players)
+
+  return TournamentView(viewModel: viewModel)
+    .modelContainer(container)
 }

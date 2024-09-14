@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		464791382C709C62007EC932 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464791372C709C62007EC932 /* Tournament.swift */; };
 		4647913A2C709D08007EC932 /* TournamentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464791392C709D08007EC932 /* TournamentView.swift */; };
-		4647913C2C70A05B007EC932 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647913B2C70A05B007EC932 /* StandingsView.swift */; };
-		4647913E2C70A1D7007EC932 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647913D2C70A1D7007EC932 /* RoundView.swift */; };
-		464791402C70ACF1007EC932 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647913F2C70ACF1007EC932 /* Round.swift */; };
-		464791422C70AD0F007EC932 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464791412C70AD0F007EC932 /* Match.swift */; };
-		464791442C70AD8B007EC932 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464791432C70AD8B007EC932 /* Player.swift */; };
+		465614382CA0B7B600773B11 /* PairingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465614372CA0B7B600773B11 /* PairingStrategy.swift */; };
+		4656143A2CA0B7CB00773B11 /* TournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465614392CA0B7CB00773B11 /* TournamentViewModel.swift */; };
+		4656143C2CA0B8A100773B11 /* PlayerPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656143B2CA0B8A100773B11 /* PlayerPerformance.swift */; };
+		4656143E2CA0B8DA00773B11 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4656143D2CA0B8DA00773B11 /* Player.swift */; };
 		46B2FA012C43C7AD007794D9 /* TextRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B2FA002C43C7AA007794D9 /* TextRecognitionView.swift */; };
-		46E373782C8DC9900025AB67 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E373772C8DC9900025AB67 /* MatchView.swift */; };
 		7883C4F42B7C0EB70087EAB7 /* CubeSightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883C4F32B7C0EB70087EAB7 /* CubeSightApp.swift */; };
 		7883C4F62B7C0EB70087EAB7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883C4F52B7C0EB70087EAB7 /* ContentView.swift */; };
 		7883C4FA2B7C0EB80087EAB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7883C4F92B7C0EB80087EAB7 /* Assets.xcassets */; };
@@ -52,13 +50,12 @@
 /* Begin PBXFileReference section */
 		464791372C709C62007EC932 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
 		464791392C709D08007EC932 /* TournamentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentView.swift; sourceTree = "<group>"; };
-		4647913B2C70A05B007EC932 /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
-		4647913D2C70A1D7007EC932 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
-		4647913F2C70ACF1007EC932 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
-		464791412C70AD0F007EC932 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		464791432C70AD8B007EC932 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		465614372CA0B7B600773B11 /* PairingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStrategy.swift; sourceTree = "<group>"; };
+		465614392CA0B7CB00773B11 /* TournamentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewModel.swift; sourceTree = "<group>"; };
+		4656143B2CA0B8A100773B11 /* PlayerPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPerformance.swift; sourceTree = "<group>"; };
+		4656143D2CA0B8DA00773B11 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		46B2FA002C43C7AA007794D9 /* TextRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionView.swift; sourceTree = "<group>"; };
-		46E373772C8DC9900025AB67 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		46ED5C2D2CA025AD00A30420 /* CubeSight.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CubeSight.xcconfig; sourceTree = SOURCE_ROOT; };
 		7883C4F02B7C0EB70087EAB7 /* CubeSight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeSight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7883C4F32B7C0EB70087EAB7 /* CubeSightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeSightApp.swift; sourceTree = "<group>"; };
 		7883C4F52B7C0EB70087EAB7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,11 +102,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46AFB4082CA0972C0037BE28 /* Tournament */ = {
+			isa = PBXGroup;
+			children = (
+				4656143B2CA0B8A100773B11 /* PlayerPerformance.swift */,
+				465614392CA0B7CB00773B11 /* TournamentViewModel.swift */,
+				465614372CA0B7B600773B11 /* PairingStrategy.swift */,
+			);
+			path = Tournament;
+			sourceTree = "<group>";
+		};
 		7883C4E72B7C0EB70087EAB7 = {
 			isa = PBXGroup;
 			children = (
 				78980A4E2B7D135800E89E68 /* CubeSight.xcconfig */,
 				78980A4D2B7D103300E89E68 /* CubeSight-release.xcconfig */,
+				46ED5C2D2CA025AD00A30420 /* CubeSight.xcconfig */,
 				7883C4F22B7C0EB70087EAB7 /* CubeSight */,
 				7883C5052B7C0EB80087EAB7 /* CubeSightTests */,
 				7883C50F2B7C0EB80087EAB7 /* CubeSightUITests */,
@@ -130,6 +138,7 @@
 		7883C4F22B7C0EB70087EAB7 /* CubeSight */ = {
 			isa = PBXGroup;
 			children = (
+				46AFB4082CA0972C0037BE28 /* Tournament */,
 				46B2FA002C43C7AA007794D9 /* TextRecognitionView.swift */,
 				78980A562B7D2D5A00E89E68 /* CubeCobraClient.swift */,
 				78980A502B7D248500E89E68 /* Data */,
@@ -141,9 +150,6 @@
 				7883C4F52B7C0EB70087EAB7 /* ContentView.swift */,
 				7883C4F92B7C0EB80087EAB7 /* Assets.xcassets */,
 				464791392C709D08007EC932 /* TournamentView.swift */,
-				4647913B2C70A05B007EC932 /* StandingsView.swift */,
-				4647913D2C70A1D7007EC932 /* RoundView.swift */,
-				46E373772C8DC9900025AB67 /* MatchView.swift */,
 			);
 			path = CubeSight;
 			sourceTree = "<group>";
@@ -176,12 +182,10 @@
 		78980A502B7D248500E89E68 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				4656143D2CA0B8DA00773B11 /* Player.swift */,
 				464791372C709C62007EC932 /* Tournament.swift */,
 				78980A512B7D24C700E89E68 /* Cube.swift */,
 				78980A532B7D270400E89E68 /* Card.swift */,
-				4647913F2C70ACF1007EC932 /* Round.swift */,
-				464791412C70AD0F007EC932 /* Match.swift */,
-				464791432C70AD8B007EC932 /* Player.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -329,22 +333,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7883C4F62B7C0EB70087EAB7 /* ContentView.swift in Sources */,
-				4647913E2C70A1D7007EC932 /* RoundView.swift in Sources */,
 				78980A542B7D270400E89E68 /* Card.swift in Sources */,
-				464791422C70AD0F007EC932 /* Match.swift in Sources */,
-				46E373782C8DC9900025AB67 /* MatchView.swift in Sources */,
 				78980A522B7D24C700E89E68 /* Cube.swift in Sources */,
 				78980A5D2B7D388500E89E68 /* ImportCubeView.swift in Sources */,
 				78980A572B7D2D5A00E89E68 /* CubeCobraClient.swift in Sources */,
-				4647913C2C70A05B007EC932 /* StandingsView.swift in Sources */,
 				464791382C709C62007EC932 /* Tournament.swift in Sources */,
+				4656143C2CA0B8A100773B11 /* PlayerPerformance.swift in Sources */,
 				7883C4F42B7C0EB70087EAB7 /* CubeSightApp.swift in Sources */,
 				78980A5F2B7D452D00E89E68 /* CubeView.swift in Sources */,
 				78B883602B82ADFE00F099AB /* CardRow.swift in Sources */,
+				4656143A2CA0B7CB00773B11 /* TournamentViewModel.swift in Sources */,
 				78B8835D2B82AC0D00F099AB /* CardList.swift in Sources */,
+				465614382CA0B7B600773B11 /* PairingStrategy.swift in Sources */,
+				4656143E2CA0B8DA00773B11 /* Player.swift in Sources */,
 				46B2FA012C43C7AD007794D9 /* TextRecognitionView.swift in Sources */,
-				464791402C70ACF1007EC932 /* Round.swift in Sources */,
-				464791442C70AD8B007EC932 /* Player.swift in Sources */,
 				4647913A2C709D08007EC932 /* TournamentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,13 +514,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CubeSight/Preview Content\"";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = PW5G4EMWTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,6 +530,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).CubeSight";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -542,13 +549,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CubeSight/Preview Content\"";
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = PW5G4EMWTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,6 +565,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).CubeSight";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
