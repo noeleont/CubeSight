@@ -30,6 +30,36 @@ class Tournament {
 }
 
 extension Tournament {
+  /// Validates that the current round is complete and ready to advance
+  var canStartNextRound: Bool {
+    guard !rounds.isEmpty else { return true } // First round always allowed
+    return rounds.last?.matches.allSatisfy { $0.isComplete } ?? false
+  }
+
+  /// Gets the next round number (purely computational)
+  var nextRoundIndex: Int {
+    rounds.count
+  }
+
+  /// Validates and creates matches for the next round
+  /// Returns nil if validation fails
+  func createNextRoundMatches(
+    using strategy: PairingStrategy = SwissPairingStrategy()
+  ) -> [TournamentMatch]? {
+    // Validate we can proceed
+    guard canStartNextRound else { return nil }
+
+    // Generate pairings
+    let matches = strategy.createPairings(
+      for: players,
+      with: performance
+    )
+
+    // Validate pairings (ensures strategy works correctly)
+    guard !matches.isEmpty else { return nil }
+
+    return matches
+  }
 
   var performance: [TournamentPlayer: TournamentPlayerPerformance] {
     var performance = Dictionary(
